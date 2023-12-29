@@ -285,6 +285,7 @@ const controller = new Controller(model, view);
 
 function init() {
   controller.init();
+  document.body.style.setProperty("--screen-height", window.innerHeight + "px");
 }
 
 document.addEventListener("DOMContentLoaded", init);

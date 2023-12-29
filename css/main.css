@@ -19,7 +19,7 @@ main #output #output-sentence {
 }
 
 main #input,
-main #timer {
+main #timer .text {
   padding-left: 24px;
   font-size: 26px;
 }
