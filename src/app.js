@@ -20,10 +20,28 @@ class Model {
     this.isOver = false;
   }
 
+  reset() {
+    this.sec = 60;
+    this.isStarted = false;
+    this.isOver = false;
+
+    this.info = {
+      correct: 0,
+      wrong: 0,
+      keyStrokes: 0,
+      totalWord: 0,
+      wpm: 0,
+      accuracy: "0%",
+    };
+
+    this.sentenceIndex = 0;
+    this.wordIndex = 0;
+  }
+
   calculateResult() {
     const acuracy = Math.floor((this.info.correct / this.info.totalWord) * 100);
     this.info.accuracy = `${acuracy}%`;
-    this.info.wpm = this.info.keyStrokes / 5 / 1;
+    this.info.wpm = Math.floor(this.info.keyStrokes / 5 / 1);
   }
 
   getSentence() {
@@ -67,6 +85,38 @@ class View {
     this.inputElement = document.getElementById("input-word");
 
     this.timerElement = document.querySelector(".timer-count");
+
+    this.resultElement = document.getElementById("info");
+    this.resultCorrectElement = document.getElementById("correct");
+    this.resultWrongElement = document.getElementById("wrong");
+    this.resultKeyStrokesElement = document.getElementById("keystrokes");
+    this.resultAccuracyElement = document.getElementById("accuracy");
+    this.resultWPMElement = document.getElementById("wpm");
+
+    this.restartButton = document.querySelector(".restart-btn");
+  }
+
+  setResult(boolean, obj) {
+    if (boolean) {
+      this.resultElement.classList.remove("none");
+
+      const { correct, wrong, keyStrokes, accuracy, wpm } = obj;
+
+      this.resultCorrectElement.textContent = correct;
+      this.resultWrongElement.textContent = wrong;
+      this.resultKeyStrokesElement.textContent = keyStrokes;
+      this.resultAccuracyElement.textContent = accuracy;
+      this.resultWPMElement.textContent = wpm;
+
+      return;
+    }
+
+    this.resultElement.classList.add("none");
+  }
+
+  reset() {
+    this.timerElement.textContent = 60;
+    this.setResult(false);
   }
 
   setTimerCount(sec) {
@@ -104,6 +154,12 @@ class Controller {
     this.view.inputElement.addEventListener("input", (e) => {
       this.inputHandler(e);
     });
+
+    this.view.restartButton.addEventListener("click", (e) => {
+      this.model.reset();
+      this.view.reset();
+      this.view.renderText(this.model.getSentence());
+    });
   }
 
   inputHandler(e) {
@@ -125,7 +181,8 @@ class Controller {
           clearInterval(timer);
           this.model.isOver = true;
           this.model.calculateResult();
-          console.log(this.model.info);
+
+          this.view.setResult(true, this.model.info);
         }
       }, 1000);
     }
@@ -135,7 +192,6 @@ class Controller {
     if (this._isSpaceBarPreseed(value)) {
       const isCorrect = this.model.checkCorrect(value);
       this.model.info.totalWord++;
-      this.model.info.keyStrokes--;
 
       if (isCorrect) {
         this.model.info.correct++;
