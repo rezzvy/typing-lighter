@@ -113,3 +113,7 @@ ul {
 .none {
   display: none;
 }
+
+.flag:hover{
+  transform: scale(1.1);
+}
