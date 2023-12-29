@@ -288,4 +288,8 @@ function init() {
   document.body.style.setProperty("--screen-height", window.innerHeight + "px");
 }
 
+window.addEventListener("resize", () => {
+  document.body.style.setProperty("--screen-height", window.innerHeight + "px");
+});
+
 document.addEventListener("DOMContentLoaded", init);

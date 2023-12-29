@@ -78,4 +78,8 @@
   body {
     gap: 0;
   }
+
+  main #info .wrapper .wrap:first-child {
+    padding: 15px 0;
+  }
 }
