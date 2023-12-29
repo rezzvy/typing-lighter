@@ -1,0 +1,70 @@
+main {
+  flex: 1;
+}
+
+main .wrapper {
+  max-width: 1000px;
+  margin: auto;
+}
+main #output {
+  margin: 30px 0;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  border-left: 4px solid rgba(255, 255, 255, 0.8);
+}
+
+main #output #output-sentence {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 42px;
+}
+
+main #input,
+main #timer {
+  padding-left: 24px;
+  font-size: 26px;
+}
+
+main #input #input-word {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  background-color: transparent;
+  border: none;
+
+  font-size: inherit;
+  color: inherit;
+}
+
+main #info {
+  margin-top: 30px;
+  padding-left: 24px;
+}
+
+main #info h2 {
+  margin-bottom: 15px;
+}
+
+main #info .wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+main #info .wrapper .wrap:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+main #info .wrapper .wrap:first-child .text {
+  font-size: 62px;
+}
+
+main #info .wrapper .wrap .text {
+  font-size: 26px;
+  font-weight: bold;
+}
