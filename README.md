@@ -1,3 +1,5 @@
+![Preview](https://repository-images.githubusercontent.com/736953844/b070f74d-2cd1-41a8-a352-951fc65373e5)
+
 # Typing Lighter
 
 Web-based app for testing your typing speed in one minute.
